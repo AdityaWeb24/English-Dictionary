@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: green;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: green;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 20px;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .button {
+            background-color: green;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            cursor: pointer;
+        }
+        .alphabet-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .alphabet-container button {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .words-container, .details-container {
+            margin: 20px;
+        }
+        .words-container button {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dictionary</h1>
+    </header>
+    <div class="quote">
+        <p>"The more that you read, the more things you will know. The more that you learn, the more places you'll go." - Dr. Seuss</p>
+    </div>
+    <div class="button-container">
+        <button class="button" onclick="showAlphabet()">Let's find</button>
+    </div>
+    <div class="alphabet-container" id="alphabet-container" style="display: none;">
+        <!-- Alphabet buttons will be dynamically added here -->
+    </div>
+    <div class="words-container" id="words-container" style="display: none;">
+        <!-- Words buttons will be dynamically added here -->
+    </div>
+    <div class="details-container" id="details-container" style="display: none;">
+        <!-- Word details will be dynamically displayed here -->
+    </div>
+
+    <script>
+        const dictionary = {
+            A: ["aardvark", "abandon", "abate", "abdicate", "aberration", /* add more words to make it 200 */],
+            B: ["babble", "baffle", "baggage", "balance", "bald", /* add more words to make it 200 */],
+            C: ["cabal", "cabin", "cactus", "cadence", "cajole", /* add more words to make it 200 */],
+            D: ["dabble", "daffodil", "dagger", "daily", "damage", /* add more words to make it 200 */],
+            E: ["eager", "eagle", "earl", "earnest", "earth", /* add more words to make it 200 */],
+            F: ["fabric", "fabulous", "facet", "faction", "fade", /* add more words to make it 200 */],
+            G: ["gable", "galaxy", "gallant", "gamut", "gargle", /* add more words to make it 200 */],
+            H: ["habit", "hack", "hail", "half", "hammer", /* add more words to make it 200 */],
+            I: ["ice", "icon", "idea", "ideal", "identify", /* add more words to make it 200 */],
+            J: ["jab", "jackal", "jade", "jargon", "jasmine", /* add more words to make it 200 */],
+            K: ["kaleidoscope", "keen", "kettle", "key", "kick", /* add more words to make it 200 */],
+            L: ["label", "labor", "lace", "ladder", "lagoon", /* add more words to make it 200 */],
+            M: ["macabre", "machine", "mad", "magnet", "maid", /* add more words to make it 200 */],
+            N: ["nail", "naive", "name", "nap", "narrow", /* add more words to make it 200 */],
+            O: ["oak", "oasis", "oath", "obedient", "object", /* add more words to make it 200 */],
+            P: ["pace", "pack", "page", "paint", "palace", /* add more words to make it 200 */],
+            Q: ["quack", "quad", "quaint", "quake", "quality", /* add more words to make it 200 */],
+            R: ["rabbit", "race", "rack", "radiant", "rage", /* add more words to make it 200 */],
+            S: ["sack", "sad", "safe", "saga", "sail", /* add more words to make it 200 */],
+            T: ["table", "taboo", "tackle", "tact", "tail", /* add more words to make it 200 */],
+            U: ["umbrella", "umpire", "unanimous", "uncle", "under", /* add more words to make it 200 */],
+            V: ["vacant", "vague", "vain", "valid", "valley", /* add more words to make it 200 */],
+            W: ["wade", "waffle", "wag", "wage", "waist", /* add more words to make it 200 */],
+            X: ["xenon", "xerox", "xylophone", "xyst", "xylem", /* add more words to make it 200 */],
+            Y: ["yacht", "yahoo", "yard", "yarn", "yawn", /* add more words to make it 200 */],
+            Z: ["zeal", "zebra", "zenith", "zero", "zinc", /* add more words to make it 200 */]
+        };
+
+        const wordDetails = {
+            "aardvark": {
+                meaning: "A nocturnal burrowing mammal of Africa that has a long snout and eats ants and termites.",
+                hindiMeaning: "अर्डवार्क",
+                origin: "Dutch, from early Afrikaans aarde ‘earth’ + vark ‘pig’.",
+                synonym: "Antbear",
+                antonym: "N/A",
+                discovery: "First described by Carl Linnaeus in 1758.",
+                example: "The aardvark dug deep into the ground to find ants."
+            },
+            "abandon": {
+                meaning: "Cease to support or look after (someone); desert.",
+                hindiMeaning: "त्यागना",
+                origin: "Middle English (in the sense ‘bring into control’): from Old French abandoner, from a- (from Latin ad ‘to, at’) + bandon ‘control’ (related to ban1).",
+                synonym: "Forsake",
+                antonym: "Keep",
+                discovery: "Originated in the 14th century.",
+                example: "He decided to abandon his old car."
+            },
+            "abate": {
+                meaning: "Become less intense or widespread.",
+                hindiMeaning: "कम करना",
+                origin: "Middle English (in the legal sense): from Old French abatre ‘to fell’, from a- (from Latin ad ‘to, at’) + batre ‘to beat’ (from Latin battere).",
+                synonym: "Decrease",
+                antonym: "Increase",
+                discovery: "First used in the 14th century.",
+                example: "The storm began to abate after a few hours."
+            },
+            "abdicate": {
+                meaning: "Renounce one's throne.",
+                hindiMeaning: "सिंहासन त्यागना",
+                origin: "Mid 16th century: from Latin abdicat- ‘renounced’, from the verb abdicare, from ab- ‘away, from’ + dicare ‘declare’.",
+                synonym: "Resign",
+                antonym: "Assume",
+                discovery: "First recorded in 1547.",
+                example: "The king decided to abdicate in favor of his son."
+            },
+            "aberration": {
+                meaning: "A departure from what is normal, usual, or expected, typically an unwelcome one.",
+                hindiMeaning: "विचलन",
+                origin: "Late 16th century: from Latin aberratio(n-), from aberrare ‘to stray’.",
+                synonym: "Anomaly",
+                antonym: "Normality",
+                discovery: "First noted in 1594.",
+                example: "The current hot spell is an aberration and will soon return to normal temperatures."
+            },
+            // Add more word details here for each word
+        };
+
+        function showAlphabet() {
+            const alphabetContainer = document.getElementById('alphabet-container');
+            alphabetContainer.innerHTML = '';
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            for (let letter of alphabet) {
+                const button = document.createElement('button');
+                button.innerText = letter;
+                button.onclick = () => showWords(letter);
+                alphabetContainer.appendChild(button);
+            }
+            alphabetContainer.style.display = 'block';
+            document.getElementById('words-container').style.display = 'none';
+            document.getElementById('details-container').style.display = 'none';
+        }
+
+        function showWords(letter) {
+            const wordsContainer = document.getElementById('words-container');
+            wordsContainer.innerHTML = '';
+            let words = dictionary[letter];
+
+            words.forEach(word => {
+                const button = document.createElement('button');
+                button.innerText = word;
+                button.onclick = () => showDetails(word);
+                wordsContainer.appendChild(button);
+            });
+            wordsContainer.style.display = 'block';
+            document.getElementById('details-container').style.display = 'none';
+        }
+
+        function showDetails(word) {
+            const detailsContainer = document.getElementById('details-container');
+            detailsContainer.innerHTML = '';
+
+            const details = wordDetails[word] || {
+                meaning: "Meaning not found.",
+                hindiMeaning: "हिंदी अर्थ नहीं मिला।",
+                origin: "Origin not found.",
+                synonym: "Synonym not found.",
+                antonym: "Antonym not found.",
+                discovery: "Discovery details not found.",
+                example: "Example not found."
+            };
+
+            const detailsHTML = `
+                <h2>${word}</h2>
+                <p><strong>Meaning:</strong> ${details.meaning}</p>
+                <p><strong>Hindi Meaning:</strong> ${details.hindiMeaning}</p>
+                <p><strong>Origin:</strong> ${details.origin}</p>
+                <p><strong>Synonym:</strong> ${details.synonym}</p>
+                <p><strong>Antonym:</strong> ${details.antonym}</p>
+                <p><strong>Discovery:</strong> ${details.discovery}</p>
+                <p><strong>Example:</strong> ${details.example}</p>
+            `;
+            detailsContainer.innerHTML = detailsHTML;
+            detailsContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
